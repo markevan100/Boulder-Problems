@@ -1,17 +1,11 @@
 require 'pry'
 
 class CreditCard
-  attr_reader :number, :valid
+  attr_reader :number
 
   def initialize(num)
     @number = num
     @num_string = num.to_s
-  end
-  
-  def validate_number
-    # this can be thought of as a "runner method", that when called, does the
-    # "processing" of the card through all the funtions. 
-    @valid = validate
   end
 
   def sixteen?(number)
