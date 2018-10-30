@@ -45,4 +45,15 @@ def test_add_totals
   assert_equal 17, visa.add_totals(visa.add_doubles, visa.no_dubs)
 end
 
+def test_divide
+  visa = CreditCard.new(5541808923795240)
+  assert visa.divide
+end
+
+def test_validate
+  visa = CreditCard.new(5541808923795240)
+  assert visa.validate
+end
+
+
 end

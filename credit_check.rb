@@ -72,4 +72,8 @@ class CreditCard
     total % 10 == 0
   end
 
+  def validate
+    self.sixteen? && self.divide
+  end
+
 end
