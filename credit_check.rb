@@ -9,67 +9,43 @@ class CreditCard
   end
 
   def sixteen?
-    self.number.to_s.length == 16
+    self.number.length == 16
   end
 
   def double
-    array = self.number.to_s.split(//)
+    array = self.number.split(//)
     new_array = []
     array.each_with_index do |num, index|
-      num = num.to_i
       if index.even?
-        num *= 2
+        int = num.to_i
+        int *= 2
+        num = int.to_s
       end
       new_array << num
     end
     new_array
   end
 
-  def no_dubs
-    singles = self.double
-    singles.each_with_index do |num, index|
-      if num.to_s.length == 2
-        singles.delete_at(index)
-      end
-    end
-    total = 0
-      singles.each do |string|
-        total += string.to_i
-      end
-      total
+  def split_doubles
+    self.double.collect do |num|
+     num.length > 1 ? num.split(//) : num
+    end.flatten
   end
 
-  def only_dubs
-    doubles = self.double
-    dubs_array =[]
-    doubles.each_with_index do |num, index|
-      if num.to_s.length == 2
-        dubs_array << num
-      end
-    end
-      dubs_array
-  end
-
-  def add_doubles
-    dubs = self.only_dubs
-    strings = dubs.collect do |num|
-      num.to_s.split(//)
-    end
-    flat_strings = strings.flatten
+  def add_numbers
     total = 0
-    flat_strings.each do |string|
+    self.split_doubles.each do |string|
       total += string.to_i
     end
     total
   end
 
-  def add_totals(singles, doubles)
-    singles + doubles
+  def divide?
+    self.add_numbers % 10 == 0
   end
 
-  def divide
-    total = add_totals(self.add_doubles, self.no_dubs)
-    total % 10 == 0
+  def validate
+    self.sixteen? && self.divide?
   end
 
 end
