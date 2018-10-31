@@ -43,6 +43,7 @@ end
 
 def test_add_doubles
 
+
 visa = CreditCard.new(8273)
 dub_array = visa.double(visa.number)
 var = visa.only_dubs(dub_array)
