@@ -11,9 +11,9 @@ class CreditCard
     number.length == 16
   end
 
-  def double (number)
+  def double (numbers)
     new_array = []
-    number.split(//).each_with_index do |num, index|
+    numbers.split(//).each_with_index do |num, index|
       if index.even?
         int = num.to_i
         int *= 2
@@ -42,8 +42,8 @@ class CreditCard
     total % 10 == 0
   end
 
-  def validate
-    self.sixteen? && self.divide?
+  def validate(num, total)
+    self.sixteen?(num) && self.divide?(total)
   end
 
 end
