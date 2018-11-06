@@ -7,6 +7,16 @@ class CreditCard
     @number = num
   end
 
+  def valid?
+    return false unless sixteen?(@number)
+    var = double(@number)
+    var2 = no_dubs(var)
+    var3 = only_dubs(var)
+    var4 = add_doubles(var3)
+    var5 = total(var2, var4)
+    return var5
+  end
+
   def num_digits(var)
     Math.log10(var).to_i + 1
   end
